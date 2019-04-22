@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -16,6 +16,28 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-</ul>
+</ul> -->
+<div class="container">
+  <form #todoForm="ngForm" (ngSubmit)="todoSubmit(todoForm.value); todoForm.reset()">
+    <div class="form-group">
+      <h1 class="text-center text-primary">Todo App</h1>
+      <div class="input-group-prepend">
+        <input type="text" #todo class="form-control" placeholder="Add Todo" name="todo"  ngModel>
+        <div class="input-group-append">
+          <button class="btn" type="button" (click)="addTodo(todo.value)"><i class="material-icons">add</i></button>
+        </div>
+        <!-- <span class="input-group-text" >Add</span> -->
+      </div>
+    </div>
+    <div class="data">
+      <ul class="list-unstyled">
+        <li [@moveInLeft] *ngFor="let todo of todoArray">{{todo}}<i (click)="deleteItem(todo)" class="material-icons">delete</i></li>
+      </ul>
+    </div>
+    <!-- <p>{{ todo.value }}</p> -->
+  </form>
+  <!-- <form action=""#todoForm="ngForm" (ngSubmit)="todoSubmit(todoForm.value)"></form> -->
+  
+</div>
 
 <router-outlet></router-outlet>
